@@ -390,16 +390,41 @@
 
         footer p { margin: 5px 0; }
         .footer-accent { color: var(--accent-secondary); }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+        .brand-logo {
+            width: 140px;
+            height: auto;
+            max-width: 42vw;
+            display: block;
+        }
+        .brand-text { text-align: left; }
+        .brand-text .logo,
+        .brand-text .station { margin: 0; }
+        .brand-text .station { margin-top: 6px; }
+        @media (max-width: 520px) {
+            .brand-text { text-align: center; }
+            .brand-logo { width: 120px; }
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1 class="logo">MIX 89.5</h1>
-
-        <h2 class="station">HIGH CARD ENTERTAINMENT</h2>
-
+        <div class="header-brand">
+            <img class="brand-logo" src="assets/images/logos/hce-logo-queen.png" alt="High Card Entertainment — Mix 89.5">
+            <div class="brand-text">
+                <h1 class="logo">MIX 89.5</h1>
+                <h2 class="station">HIGH CARD ENTERTAINMENT</h2>
+            </div>
+        </div>
         <p class="tagline">Community radio built by music lovers.</p>
-        
         <p class="subtag">Tampa Bay • Live Music • Requests • Great Company</p>
     </header>
 
