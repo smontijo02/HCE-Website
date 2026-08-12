@@ -359,6 +359,13 @@
             align-items: center;
             gap: 8px;
         }
+        .crew-photo {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+        }
         .crew-name {
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
@@ -591,7 +598,10 @@
                 const follow = safeLink
                     ? `<a href="${escapeHtml(safeLink)}" target="_blank" rel="noopener noreferrer" class="crew-x">Follow on X ↗</a>`
                     : "";
-                return `<div class="crew-card crew-accent-${i % 3}"><span class="crew-name">${name}</span>${title}${follow}</div>`;
+                const photo = e.image
+                    ? `<img class="crew-photo" src="${escapeHtml(e.image)}" alt="${name}" loading="lazy">`
+                    : "";
+                return `<div class="crew-card crew-accent-${i % 3}">${photo}<span class="crew-name">${name}</span>${title}${follow}</div>`;
             }).join('');
             section.style.display = '';
         }
@@ -608,11 +618,13 @@
                 const nameIdx = header.findIndex(h => ['name', 'handle', 'host', 'dj'].includes(h));
                 const titleIdx = header.findIndex(h => ['title', 'moniker'].includes(h));
                 const linkIdx = header.findIndex(h => ['link', 'x', 'url', 'twitter', 'x link'].includes(h));
+                const imageIdx = header.findIndex(h => ['image', 'photo', 'img'].includes(h));
                 if (nameIdx < 0) { renderCrew(CREW_FALLBACK); return; }
                 const entries = rows.slice(1).map(r => ({
                     name: (r[nameIdx] || "").trim(),
                     title: titleIdx >= 0 ? (r[titleIdx] || "").trim() : "",
-                    link: linkIdx >= 0 ? (r[linkIdx] || "").trim() : ""
+                    link: linkIdx >= 0 ? (r[linkIdx] || "").trim() : "",
+                    image: imageIdx >= 0 ? (r[imageIdx] || "").trim() : ""
                 })).filter(e => e.name);
                 renderCrew(entries.length ? entries : CREW_FALLBACK);
             } catch (err) {
@@ -645,9 +657,9 @@
         // Populate this from a NEW "Team" tab in your sheet so you can add/rotate hosts
         // without touching code:
         //   1. Add a tab called "Team"
-        //   2. Row 1 headers exactly:   Name   |  Title   |  Link
-        //   3. One row per host:         DJ Pixel  |  Master of Bass  |  https://x.com/yourhandle
-        //      (Title is optional — leave the cell blank and no line is shown)
+        //   2. Row 1 headers exactly:   Name   |  Link   |  Moniker   |  Image
+        //   3. One row per host:         DJ Pixel  |  https://x.com/yourhandle  |  Master of Bass  |  assets/images/crew/dj-pixel.png
+        //      (Link and Image are optional — leave the cell blank and that part is skipped)
         //   4. File > Share > Publish to web > pick the "Team" tab > CSV > Publish
         //   5. Paste that published CSV link below.
         // The section stays HIDDEN until this has data, so an empty tab just shows nothing
@@ -659,6 +671,7 @@
         const CREW_FALLBACK = [
             // { name: "DJ Pixel", title: "Master of Bass",     link: "https://x.com/yourhandle" },
             // { name: "Nathalia", title: "The Queen of Spades", link: "https://x.com/otherhandle" },
+            { name: "The Silicon Gremlin", title: "Station Language Model", link: "", image: "assets/images/crew/silicon-gremlin.png" },
         ];
 
         function escapeHtml(value) {
