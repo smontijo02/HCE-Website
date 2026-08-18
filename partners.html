@@ -140,6 +140,45 @@
             box-shadow: 0 6px 20px rgba(244, 183, 94, 0.45);
         }
 
+        .page-header {
+            margin: 2rem auto 1rem;
+            padding: 2rem 1rem 0;
+        }
+
+        .page-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+            margin: 2rem auto 3rem;
+        }
+
+        .partner-card {
+            background: rgba(18, 30, 53, 0.75);
+            border: 2px solid rgba(57, 213, 255, 0.35);
+            border-radius: 16px;
+            padding: 1.5rem 1rem;
+            text-align: left;
+        }
+
+        .partner-card h3 {
+            margin-top: 0;
+            color: var(--accent-gold);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .partner-card p {
+            margin: 0;
+            color: var(--text-muted);
+        }
+
         /* SUNO Player Box styling */
         .suno-box {
             background: rgba(18, 30, 53, 0.6);
@@ -468,71 +507,35 @@
     </header>
 
     <main class="container">
-        <!-- Live Player / Status Area -->
-        <section class="now-playing">
-            <h2>🔴 LIVE FROM THE BAY</h2>
-            <div class="track-info">
-                <span id="song-title">[Song Title]</span> — <span id="song-artist">[Artist]</span>
-            </div>
-            <p class="requested-by">Requested by: <span id="listener-request">[Requested By]</span></p>
-            <div class="np-actions">
-                <button class="js-join-space">Join Live X Space</button>
-                <button class="request-btn js-request-song">Request Song</button>
-            </div>
-        </section>
-
-        <!-- SUNO Music Feature Platform for Nathalia -->
-        <section class="suno-box">
-            <h3>🎵 The Queen of Spades</h3>
-            <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.95rem;">Streaming directly from the network's high-fidelity AI music workspace.</p>
-            <button class="suno-btn" onclick="window.open('https://suno.com/@l_beautiful1', '_blank')">🔊 Spin the Track on SUNO</button>
-        </section>
-
         <div class="page-links">
-            <a class="nav-btn" href="partners.html">View Partners</a>
+            <a class="nav-btn" href="index.html">Back to Home</a>
         </div>
 
-        <!-- Song Request / Live Queue -->
-        <section class="request-section">
-            <h2>🎤 REQUEST YOUR SONG</h2>
-            <p class="sub">Drop your request here instead of DMs — everyone can see where they land in the rotation.</p>
-            <button class="request-btn js-request-song">Submit a Request</button>
-
-            <div class="queue-list">
-                <h3>🎧 UP NEXT IN ROTATION</h3>
-                <p id="queue-count" class="queue-count">Loading queue count…</p>
-                <div id="queue-container">
-                    <p class="queue-status">Loading requests…</p>
-                </div>
-            </div>
+        <section class="page-header">
+            <h2>🤝 FEATURED PARTNERS</h2>
+            <p class="sub" style="color: var(--text-muted); margin: 0;">A dedicated page for the people, crews, and organizations we want to spotlight.</p>
         </section>
 
-        <!-- Structured Grid/Schedule -->
-        <section class="schedule">
-            <h2>Daily Groove Lineup</h2>
-            <div class="lineup-group">
-                <strong>Daytime Broadcasts:</strong>
-                Morning Groove • Magic Monday • Timeless Tuesday • Retro Rewind Wednesday • Throwback Thursday • Flashback Friday
-            </div>
-            <div class="lineup-group">
-                <strong>Afterhours & Weekends:</strong>
-                Midday Jukebox Heat • Drive-Time Power Mix • The After Hours Slow Jam • Saturday Night Live Wire • Full Throttle Sunday Night
-            </div>
+        <!-- SUNO Music Feature Platform for Pulsecast -->
+        <section class="pulse-box">
+            <h3>🎧 PULSECAST</h3>
+            <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.95rem;">Our newest partnered crew — high-energy mixes straight from the pulse of the underground.</p>
+            <button class="pulse-btn" onclick="window.open('https://suno.com/playlist/145fb58d-8acd-456e-9c70-e6b5eaf5363f', '_blank')">🔊 Spin the Pulsecast Playlist</button>
         </section>
 
-        <!-- Meet the Crew (populated from the Team sheet tab; hidden until it has data) -->
-        <section class="crew-section" id="crew-section" style="display:none;">
-            <h2>🎙️ MEET THE CREW</h2>
-            <p class="crew-sub">The voices behind Mix 89.5 — live across the week.</p>
-            <div class="crew-grid" id="crew-grid"></div>
-        </section>
-
-        <!-- Co-Host / DJ Profile Area -->
-        <section class="dj-section">
-            <h2>The Queen of Spades & DJ Pixel</h2>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 0;">Live from the luxurious HCE studios, high above Tampa Bay</p>
-            <button class="js-join-space">Tune In Live</button>
-            <button class="js-archive">Listen to Archives</button>
+        <section class="partner-grid">
+            <article class="partner-card">
+                <h3>Community Spotlight</h3>
+                <p>Highlight artists, organizations, and collaborators that deserve a bigger stage.</p>
+            </article>
+            <article class="partner-card">
+                <h3>Creative Connections</h3>
+                <p>Feature local businesses, partners, and projects that align with the station’s vibe.</p>
+            </article>
+            <article class="partner-card">
+                <h3>Future Features</h3>
+                <p>Add new partner profiles here without changing the current site layout or flow.</p>
+            </article>
         </section>
     </main>
 
@@ -740,8 +743,7 @@
         }
 
         function isTruthyLiveFlag(value) {
-            const normalized = String(value || "").trim().toLowerCase();
-            return ["yes", "y", "true", "1", "live", "on", "x", "✓", "✔", "checked", "played", "active"].includes(normalized);
+            return /^(yes|y|true|1|live|on)$/i.test(String(value || "").trim());
         }
 
         function findNowPlayingRow(allRows, idx) {
@@ -892,7 +894,7 @@
                     if (countEl) countEl.textContent = '0 songs displayed';
                     return;
                 }
-                const maxDisplayed = 10;
+                const maxDisplayed = 15;
                 const totalPending = dataRows.length;
                 dataRows = dataRows.slice(-maxDisplayed); // most recent pending requests, capped for display
 
