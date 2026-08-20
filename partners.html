@@ -490,45 +490,96 @@
         footer p { margin: 5px 0; }
         .footer-accent { color: var(--accent-secondary); }
 
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .header-wrap {
+            position: relative;
+            width: min(840px, 78vw);
+            min-height: 160px;
+            margin: 0 auto 0.5rem;
+        }
+
         .header-brand {
+            position: relative;
+            width: 100%;
+            min-height: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-bottom: 14px;
         }
+
         .brand-logo {
+            position: absolute;
+            left: 0;
+            top: 46%;
+            transform: translateY(-50%);
             width: 210px;
             height: auto;
             max-width: 52vw;
             display: block;
+            align-self: flex-start;
+            margin-top: 6px;
         }
-        .brand-text { text-align: left; }
+
+        .brand-text {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .header-copy {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
         .brand-text .logo,
         .brand-text .station { margin: 0; }
         .brand-text .station { margin-top: 6px; }
+
         @media (max-width: 520px) {
+            .header-wrap {
+                width: min(500px, 92vw);
+                min-height: 120px;
+            }
+            .brand-logo {
+                width: 150px;
+                left: 6px;
+                margin-top: 4px;
+            }
             .brand-text { text-align: center; }
-            .brand-logo { width: 165px; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-brand">
-            <img class="brand-logo" src="assets/images/logos/hce-logo-queen.png" alt="High Card Entertainment — Mix 89.5">
-            <div class="brand-text">
-                <h1 class="logo">MIX 89.5</h1>
-                <h2 class="station">HIGH CARD ENTERTAINMENT</h2>
+    <header class="header-container">
+        <div class="header-wrap">
+            <div class="header-brand">
+                <img class="brand-logo" src="assets/images/logos/hce-logo-queen.png" alt="High Card Entertainment — Mix 89.5">
+                <div class="brand-text">
+                    <h1 class="logo">MIX 89.5</h1>
+                    <h2 class="station">HIGH CARD ENTERTAINMENT</h2>
+                </div>
             </div>
         </div>
-        <p class="tagline">Community radio built by music lovers.</p>
-        <p class="subtag">Tampa Bay • Live Music • Requests • Great Company</p>
-        <div class="header-nav" aria-label="Main navigation">
-            <a class="nav-btn" href="index.html">HOME</a>
-            <a class="nav-btn" href="partners.html">PARTNERS</a>
-            <a class="nav-btn" href="network.html">HCE NETWORK</a>
+
+        <div class="header-copy">
+            <p class="tagline">Community radio built by music lovers.</p>
+            <p class="subtag">Tampa Bay • Live Music • Requests • Great Company</p>
+            <div class="header-nav" aria-label="Main navigation">
+                <a class="nav-btn" href="index.html">HOME</a>
+                <a class="nav-btn" href="partners.html">PARTNERS</a>
+                <a class="nav-btn" href="network.html">HCE NETWORK</a>
+            </div>
         </div>
     </header>
 
