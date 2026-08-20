@@ -61,6 +61,13 @@
             font-size: 1.2rem; 
             color: var(--text-muted); 
             max-width: 600px;
+            margin: 0 auto 0.35rem;
+        }
+
+        .subtag {
+            font-size: 1rem;
+            color: #fff;
+            font-weight: 400;
             margin: 0 auto;
         }
 
@@ -146,7 +153,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             margin: 1rem auto 0;
             flex-wrap: wrap;
         }
@@ -496,8 +503,9 @@
             </div>
             <p class="requested-by">Requested by: <span id="listener-request">[Requested By]</span></p>
             <div class="np-actions">
-                <button class="js-join-space">Join Live X Space</button>
-                <button class="request-btn js-request-song">Request Song</button>
+                <button class="js-listen-mixcloud">🎧 Listen on Mixcloud</button>
+                <button class="js-join-space">💬 Join on X Space</button>
+                <button class="request-btn js-request-song">🎤 Request a Song</button>
             </div>
         </section>
 
@@ -559,17 +567,20 @@
         //   GOOD: https://x.com/i/spaces/1YxNrrgjVRpxw
         //   BAD:  https://x.com/i/spaces/1YxNrrgjVRpxw?s=20
         const LINKS = {
-            space:   "https://x.com/i/spaces/1YxNrrgjVRpxw", // Join Live X Space + Tune In Live
-            archive: "",                                     // Listen to Archives (Evmux replay). "" = "coming soon"
-            request: "https://tally.so/r/LZyRZz"             // Song request form (stable)
+            mixcloud: "",                                    // Mixcloud live stream
+            space:    "https://x.com/i/spaces/1YxNrrgjVRpxw", // Join Live X Space + Tune In Live
+            archive:  "",                                    // Listen to Archives (Evmux replay). "" = "coming soon"
+            request:  "https://tally.so/r/LZyRZz"            // Song request form (stable)
         };
 
         // ---- Live link updates from a published Google Sheet tab (optional) ----
         // ONE-TIME SETUP so you can change these from your phone, no code, no deploy:
         //   1. In your queue Google Sheet, add a NEW tab called "Links"
         //   2. Row 1 headers exactly:   Key    |  Value
-        //   3. Rows underneath:         space   |  <tonight's X Space link>
+        //   3. Rows underneath:         mixcloud |  <live Mixcloud stream URL>
+        //                               space   |  <tonight's X Space link>
         //                               archive |  <last Evmux replay link>
+        //                               request |  <song request form link>
         //   4. File > Share > Publish to web > pick the "Links" tab > CSV > Publish
         //   5. Paste THAT published CSV link below (it's a DIFFERENT url than the
         //      queue — different gid — so don't reuse the queue link).
@@ -577,8 +588,22 @@
         const CONFIG_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmBJ481frog6MGj_5otzX5d4ioVRDpx3Y4o3fjkuTSA46YWkzKuQPsRFRcMChdqT8c5Yq3qpQsWNhL/pub?gid=520913966&single=true&output=csv";
 
         function wireBroadcastButtons() {
+            document.querySelectorAll('.js-listen-mixcloud').forEach(el =>
+                el.addEventListener('click', () => {
+                    if (/^https?:\/\//i.test(LINKS.mixcloud)) {
+                        window.open(LINKS.mixcloud, '_blank', 'noopener');
+                    } else {
+                        alert('🎧 Mixcloud live stream link coming soon!');
+                    }
+                }));
             document.querySelectorAll('.js-join-space').forEach(el =>
-                el.addEventListener('click', () => window.open(LINKS.space, '_blank', 'noopener')));
+                el.addEventListener('click', () => {
+                    if (/^https?:\/\//i.test(LINKS.space)) {
+                        window.open(LINKS.space, '_blank', 'noopener');
+                    } else {
+                        alert('💬 X Space link coming soon!');
+                    }
+                }));
             document.querySelectorAll('.js-request-song').forEach(el =>
                 el.addEventListener('click', () => window.open(LINKS.request, '_blank', 'noopener')));
             document.querySelectorAll('.js-archive').forEach(el =>
