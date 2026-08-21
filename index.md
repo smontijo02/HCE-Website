@@ -456,7 +456,9 @@
         .footer-accent { color: var(--accent-secondary); }
 
         /* =========================================================
-           HEADER / BRANDING (UPDATED FOR PARALLEL LAYOUT)
+           HEADER / BRANDING
+           Logo and MIX 89.5 / HIGH CARD ENTERTAINMENT sit side by
+           side as one group, centered together as a unit.
            ========================================================= */
 
         .header-container {
@@ -475,43 +477,43 @@
             justify-content: center;
         }
 
+        /* Logo and text now sit side by side as one group,
+           centered together (this naturally pulls the text
+           left of where full-width centering used to put it). */
         .header-brand {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 24px;
+            gap: 28px;
             flex-wrap: wrap;
-            margin: 0 auto;
         }
 
         .header-logo {
-            width: 210px;
-            max-width: 210px;
+            width: 220px;
+            max-width: 220px;
             height: auto;
             display: block;
             flex-shrink: 0;
         }
 
-        /* Stacks MIX 89.5 and HIGH CARD ENTERTAINMENT vertically,
-           positioned directly to the right of the parallel logo. */
+        /* MIX 89.5 and HIGH CARD ENTERTAINMENT sit on the same
+           line, sharing a baseline, instead of stacking. */
         .brand-text {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start; /* Left-aligns text with the logo */
+            align-items: baseline;
             justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
             text-align: left;
         }
 
-        .brand-text .logo {
-            font-size: 3.8rem;
-            line-height: 1;
+        .brand-text .logo,
+        .brand-text .station {
             margin: 0;
         }
 
-        .brand-text .station {
-            font-size: 1.4rem;
-            margin-top: 4px;
-            line-height: 1.2;
+        .station {
+            font-size: 2.3rem;
         }
 
         /* Keep the supporting copy centered below the brand */
@@ -523,30 +525,38 @@
             text-align: center;
         }
 
-        /* Mobile layout: keep aligned cleanly when screen shrinks */
+        /* Mobile layout: stack logo above text, and MIX 89.5
+           above HIGH CARD ENTERTAINMENT, all centered. */
         @media (max-width: 700px) {
+            .header-wrap {
+                width: 94vw;
+            }
+
             .header-brand {
                 flex-direction: column;
-                align-items: center;
-                gap: 12px;
+                gap: 10px;
             }
 
             .header-logo {
-                width: 130px;
-                max-width: 130px;
+                width: 125px;
+                max-width: 125px;
             }
 
             .brand-text {
+                flex-direction: column;
                 align-items: center;
+                gap: 4px;
                 text-align: center;
             }
 
             .brand-text .logo {
-                font-size: 2.8rem;
+                font-size: 2.7rem;
+                letter-spacing: 3px;
             }
 
             .brand-text .station {
-                font-size: 1.2rem;
+                font-size: 1.5rem;
+                letter-spacing: 1.5px;
             }
 
             .tagline {
@@ -570,7 +580,7 @@
             }
 
             .brand-text .station {
-                font-size: 1rem;
+                font-size: 1.15rem;
                 letter-spacing: 1px;
             }
 
