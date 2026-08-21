@@ -455,10 +455,6 @@
         footer p { margin: 5px 0; }
         .footer-accent { color: var(--accent-secondary); }
 
-        /* =========================================================
-           HEADER / BRANDING (UPDATED FOR PARALLEL LAYOUT)
-           ========================================================= */
-
         .header-container {
             display: flex;
             flex-direction: column;
@@ -468,53 +464,53 @@
         }
 
         .header-wrap {
+            position: relative;
             width: min(1000px, 92vw);
             margin: 0 auto 0.5rem;
+            min-height: 155px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .header-brand {
-            display: inline-flex;
+            width: 100%;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin: 0 auto;
+            position: relative;
         }
 
         .header-logo {
-            width: 210px;
-            max-width: 210px;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+
+            width: 220px;
+            max-width: 220px;
             height: auto;
+
             display: block;
-            flex-shrink: 0;
         }
 
-        /* Stacks MIX 89.5 and HIGH CARD ENTERTAINMENT vertically,
-           positioned directly to the right of the parallel logo. */
         .brand-text {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start; /* Left-aligns text with the logo */
-            justify-content: center;
-            text-align: left;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
 
-        .brand-text .logo {
-            font-size: 3.8rem;
-            line-height: 1;
+        .brand-text .logo,
+        .brand-text .station {
             margin: 0;
         }
 
         .brand-text .station {
-            font-size: 1.4rem;
-            margin-top: 4px;
-            line-height: 1.2;
+            margin-top: 6px;
         }
 
-        /* Keep the supporting copy centered below the brand */
         .header-copy {
             display: flex;
             flex-direction: column;
@@ -523,45 +519,48 @@
             text-align: center;
         }
 
-        /* Mobile layout: keep aligned cleanly when screen shrinks */
         @media (max-width: 700px) {
-            .header-brand {
-                flex-direction: column;
-                align-items: center;
-                gap: 12px;
+            .header-wrap {
+                width: 94vw;
+                min-height: 135px;
             }
 
             .header-logo {
-                width: 130px;
-                max-width: 130px;
+                width: 125px;
+                max-width: 125px;
+                left: 0;
             }
 
             .brand-text {
-                align-items: center;
-                text-align: center;
+                padding-left: 115px;
+                padding-right: 10px;
             }
 
             .brand-text .logo {
-                font-size: 2.8rem;
+                font-size: 2.7rem;
+                letter-spacing: 3px;
             }
 
             .brand-text .station {
-                font-size: 1.2rem;
-            }
-
-            .tagline {
-                font-size: 1.3rem;
-            }
-
-            .subtag {
-                font-size: 1.05rem;
+                font-size: 1.25rem;
+                letter-spacing: 1.5px;
             }
         }
 
         @media (max-width: 520px) {
+            .header-wrap {
+                min-height: 120px;
+            }
+
             .header-logo {
                 width: 95px;
                 max-width: 95px;
+                left: -2px;
+            }
+
+            .brand-text {
+                padding-left: 85px;
+                padding-right: 5px;
             }
 
             .brand-text .logo {
@@ -570,16 +569,8 @@
             }
 
             .brand-text .station {
-                font-size: 1rem;
-                letter-spacing: 1px;
-            }
-
-            .tagline {
-                font-size: 1.15rem;
-            }
-
-            .subtag {
                 font-size: 0.95rem;
+                letter-spacing: 1px;
             }
         }
     </style>
@@ -591,14 +582,12 @@
 
             <div class="header-brand">
 
-                <!-- Logo sits independently on the left -->
                 <img
                     class="header-logo"
                     src="assets/images/logos/hce-logo-queen.png"
                     alt="High Card Entertainment — Mix 89.5"
                 >
 
-                <!-- This remains centered against the full header -->
                 <div class="brand-text">
                     <h1 class="logo">MIX 89.5</h1>
                     <h2 class="station">HIGH CARD ENTERTAINMENT</h2>
