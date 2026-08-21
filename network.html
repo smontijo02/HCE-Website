@@ -149,6 +149,42 @@
             color: var(--accent-secondary);
         }
 
+        /* Daly Fix Podcast Box styling */
+        .daly-box {
+            background: rgba(18, 30, 53, 0.6);
+            border: 2px dashed #1cc6d9;
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+        }
+
+        .daly-box h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #1cc6d9;
+            margin-top: 0;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        button.daly-btn {
+            background: #1cc6d9;
+            color: #0b1326;
+            font-size: 1.05rem;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 999px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(28, 198, 217, 0.35);
+            transition: all 0.2s ease;
+        }
+
+        button.daly-btn:hover {
+            background: var(--accent-gold);
+            box-shadow: 0 6px 20px rgba(244, 183, 94, 0.45);
+        }
+
         .network-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -385,6 +421,13 @@
         <div class="disclaimer">
             <strong>HCE Network</strong> features independent programs and organizations with whom High Card Entertainment maintains promotional or community relationships. Inclusion does not necessarily represent an endorsement of the views, opinions, or programming expressed by featured organizations or their hosts.
         </div>
+
+        <!-- Daly Fix Podcast Feature -->
+        <section class="daly-box">
+            <h3>🎙️ The Daly Fix</h3>
+            <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.95rem;">With nearly four decades on the political battlefield, Kay Daly brings the real news behind the headlines — MWF 6pm EST livestream.</p>
+            <button class="daly-btn" onclick="window.open('https://x.com/TheDalyFix', '_blank')">🔗 Follow The Daly Fix on X</button>
+        </section>
 
         <section class="network-grid" aria-label="HCE network highlights">
             <article class="network-card">
